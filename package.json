@@ -1,0 +1,41 @@
+{
+  "name": "o-val",
+  "version": "1.0.0",
+  "description": "An object validation, to check whether an object meets your set requirements",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "scripts": {
+    "start": "tsup && node .",
+    "test": "jest",
+    "build": "tsup"
+  },
+  "keywords": [
+    "object",
+    "validation",
+    "input",
+    "form",
+    "rules"
+  ],
+  "author": "Alex Salmi",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "tsup": "^8.0.2",
+    "tsx": "^4.7.1",
+    "typescript": "^5.4.2"
+  }
+}
