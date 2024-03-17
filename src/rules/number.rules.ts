@@ -1,5 +1,5 @@
-import Rule from "../classes/rule.class.js";
-import BaseRules from "./base.rules.js";
+import Rule from "classes/rule.class.js";
+import BaseRules from "rules/base.rules.js";
 
 const NumberRules: RuleSet = {
   number: new Rule('number',
@@ -28,7 +28,7 @@ const NumberRules: RuleSet = {
   ),
 
   isBetween: new Rule('isBetween',
-    function (args: number[]): Function {
+    function (...args: number[]): Function {
       let [lowerLimit, upperLimit] = args;
       return function (value: number): boolean {
         return value >= lowerLimit && value <= upperLimit;

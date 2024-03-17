@@ -1,4 +1,4 @@
-import Rule from "../classes/rule.class.js";
+import Rule from "classes/rule.class.js";
 
 const BaseRules: RuleSet = {
   // not: (value: any): boolean => {
@@ -19,7 +19,7 @@ const BaseRules: RuleSet = {
   ),
 
   isIn: new Rule('isIn',
-    function (items: any[]) {
+    function (...items: any[]) {
       return (value: any): boolean => {
         return items.includes(value.toString());
       }

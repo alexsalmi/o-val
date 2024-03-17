@@ -1,7 +1,7 @@
-import ArrayRules from "./array.rules.js";
-import NumberRules from "./number.rules.js";
-import ObjectRules from "./object.rules.js";
-import StringRules from "./string.rules.js";
+import ArrayRules from "rules/array.rules.js";
+import NumberRules from "rules/number.rules.js";
+import ObjectRules from "rules/object.rules.js";
+import StringRules from "rules/string.rules.js";
 
 const rules: RuleSetCollection = {
   string: StringRules,

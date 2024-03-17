@@ -1,5 +1,5 @@
-import Schema from "./schema.class.js";
-import Spec from "./spec.class.js";
+import Schema from "classes/schema.class.js";
+import Spec from "classes/spec.class.js";
 
 class Validator {
   #schema: Schema;
@@ -54,7 +54,7 @@ class Validator {
           addError(fullKey, check.getErrorMsg(fullKey, value));
       }
 
-      if (spec.type === 'object' && valid) {
+      if (spec.type === 'object' && !errors[key]) {
         let nestedRes = this.#validateObject(value, spec.children!.specs, `${fullKey}.`);
         valid = valid && nestedRes.valid;
         errors = {
@@ -63,7 +63,7 @@ class Validator {
         };
       }
 
-      if (spec.type === 'array' && valid) {
+      if (spec.type === 'array' && !errors[key]) {
         let nestedRes = this.#validateArray(value, spec.children!.specs, `${fullKey}`);
         valid = valid && nestedRes.valid;
         errors = {
@@ -89,8 +89,11 @@ class Validator {
     let errors: ValidationErrors = {};
     let visited: boolean[] = Array(arr.length).fill(false);
 
-    const addError = (key: string, errorMsg: string): void => {
+    const addError = (key: string, errorMsg: string, reset: boolean = false): void => {
       valid = false;
+
+      if(reset)
+        errors = {};
 
       if (!errors[key])
         errors[key] = [];
@@ -105,22 +108,23 @@ class Validator {
 
       for (let i = range[0]; i <= range[1]; i++){
         if (i >= arr.length) {
-          addError(path, `Array at key '${path}' contains less elements than defined in the specs`);
+          addError(path, `Array at key '${path}' contains less elements than defined in the specs`, true);
           break;
         }
+        visited[i] = true;
         let value = arr[i];
 
         let requiredCheck = spec.checks[0];
         if (!requiredCheck.checkFn(value)) {
           let error = requiredCheck.getErrorMsg(`${path}[${i}]`, value);
           if (error)
-            addError(`${path}[${i}]`, error);
+            addError(path, error);
           continue;
         }
 
         let typeCheck = spec.checks[1];
         if (!typeCheck.checkFn(value)) {
-          addError(`${path}[${i}]`, typeCheck.getErrorMsg(`${path}[${i}]`, value));
+          addError(path, typeCheck.getErrorMsg(`${path}[${i}]`, value));
           continue;
         }
 
@@ -128,7 +132,7 @@ class Validator {
           let checkPassed: boolean = check.checkFn(value);
   
           if (!checkPassed)
-            addError(`${path}[${i}]`, check.getErrorMsg(`${path}[${i}]`, value));
+            addError(path, check.getErrorMsg(`${path}[${i}]`, value));
         }
 
         if (spec.type === 'object' && valid) {
@@ -152,7 +156,7 @@ class Validator {
     }
 
     if (!visited.slice(-1)[0])
-      addError(path, `Array at key '${path}' contains more elements than defined in the specs`);
+      addError(path, `Array at key '${path}' contains more elements than defined in the specs`, true);
 
     return {
       valid,

@@ -1,5 +1,5 @@
-import Validator from "../../src/classes/validator.class.js";
-import NumberRules from "../../src/rules/number.rules.js";
+import Validator from "classes/validator.class.js";
+import NumberRules from "rules/number.rules.js";
 
 const VALID_RESPONSE = {
   valid: true,

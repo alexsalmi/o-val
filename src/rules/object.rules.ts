@@ -1,5 +1,5 @@
-import Rule from "../classes/rule.class.js";
-import BaseRules from "./base.rules.js"
+import Rule from "classes/rule.class.js";
+import BaseRules from "rules/base.rules.js"
 
 const ObjectRules: RuleSet = {
   object: new Rule('object',

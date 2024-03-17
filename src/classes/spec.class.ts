@@ -1,5 +1,5 @@
-import rules, { types } from "../rules/index.js";
-import Schema, { ArraySchema } from "./schema.class.js";
+import rules, { types } from "rules/index.js";
+import Schema, { ArraySchema } from "classes/schema.class.js";
 
 export default class Spec {
   #key: string
@@ -67,10 +67,8 @@ export default class Spec {
       if (!types.includes(inputSpec[0]))
         throw Error(`Type ${inputSpec[0]} does not exist for key '${this.#key}'`);
 
-      if ((inputSpec[0] === 'object' || inputSpec[0] === 'array') && typeof inputSpec.slice(-1)[0] !== 'object') {
-        console.log(inputSpec)
+      if ((inputSpec[0] === 'object' || inputSpec[0] === 'array') && typeof inputSpec.slice(-1)[0] !== 'object') 
         throw Error(`Nested object must be provided for key '${this.#key}' of type '${inputSpec[0]}'`);
-      }
     }
 
     if (typeof inputSpec === 'string') {

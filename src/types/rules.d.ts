@@ -1,6 +1,5 @@
 type Rule = {
   getFunc: Function,
-  setErrorMsg: Function,
   getErrorMsg: Function,
 }
 
