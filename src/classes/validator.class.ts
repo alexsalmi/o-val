@@ -33,25 +33,25 @@ class Validator {
       let value = obj[key];
       let fullKey: string = `${path}${key}`;
 
-      let requiredCheck = spec.checks[0];
-      if (!requiredCheck.checkFn(value)) {
-        let error = requiredCheck.getErrorMsg(fullKey, value)
+      let requiredRule = spec.rules[0];
+      if (!requiredRule.ruleFn(value)) {
+        let error = requiredRule.getErrorMsg(fullKey, value)
         if (error)
           addError(fullKey, error);
         continue;
       }
 
-      let typeCheck = spec.checks[1];
-      if (!typeCheck.checkFn(value)) {
-        addError(fullKey, typeCheck.getErrorMsg(fullKey, value));
+      let typeRule = spec.rules[1];
+      if (!typeRule.ruleFn(value)) {
+        addError(fullKey, typeRule.getErrorMsg(fullKey, value));
         continue;
       }
 
-      for (const check of spec.checks.slice(2)) {
-        let checkPassed: boolean = check.checkFn(value);
+      for (const rule of spec.rules.slice(2)) {
+        let rulePassed: boolean = rule.ruleFn(value);
 
-        if (!checkPassed)
-          addError(fullKey, check.getErrorMsg(fullKey, value));
+        if (!rulePassed)
+          addError(fullKey, rule.getErrorMsg(fullKey, value));
       }
 
       if (spec.type === 'object' && !errors[key]) {
@@ -114,25 +114,25 @@ class Validator {
         visited[i] = true;
         let value = arr[i];
 
-        let requiredCheck = spec.checks[0];
-        if (!requiredCheck.checkFn(value)) {
-          let error = requiredCheck.getErrorMsg(`${path}[${i}]`, value);
+        let requiredRule = spec.rules[0];
+        if (!requiredRule.ruleFn(value)) {
+          let error = requiredRule.getErrorMsg(`${path}[${i}]`, value);
           if (error)
             addError(path, error);
           continue;
         }
 
-        let typeCheck = spec.checks[1];
-        if (!typeCheck.checkFn(value)) {
-          addError(path, typeCheck.getErrorMsg(`${path}[${i}]`, value));
+        let typeRule = spec.rules[1];
+        if (!typeRule.ruleFn(value)) {
+          addError(path, typeRule.getErrorMsg(`${path}[${i}]`, value));
           continue;
         }
 
-        for (const check of spec.checks.slice(2)) {
-          let checkPassed: boolean = check.checkFn(value);
+        for (const rule of spec.rules.slice(2)) {
+          let rulePassed: boolean = rule.ruleFn(value);
   
-          if (!checkPassed)
-            addError(path, check.getErrorMsg(`${path}[${i}]`, value));
+          if (!rulePassed)
+            addError(path, rule.getErrorMsg(`${path}[${i}]`, value));
         }
 
         if (spec.type === 'object' && valid) {

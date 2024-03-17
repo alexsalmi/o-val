@@ -1,10 +1,11 @@
 import rules, { types } from "rules/index.js";
 import Schema, { ArraySchema } from "classes/schema.class.js";
 
+/** @class Spec class */
 export default class Spec {
   #key: string
   type: string
-  checks: SpecCheck[] = [];
+  rules: SpecRule[] = [];
   children?: Schema
   range?: SpecRange
   
@@ -12,32 +13,32 @@ export default class Spec {
     this.#key = key;
     this.range = range;
 
-    let inputChecks: (string | InputSpecs)[];
+    let inputRules: (string | InputSpecs)[];
     
     this.#validateInput(inputSpec);
 
     if (typeof inputSpec === 'string') {
       this.type = inputSpec;
-      inputChecks = [inputSpec];
+      inputRules = [inputSpec];
     } else {
       this.type = inputSpec[0] as string;
-      inputChecks = inputSpec;      
+      inputRules = inputSpec;      
     }
 
     if (this.type === 'object') {
-      let nestedSpecs = inputChecks.pop() as InputSpecs;
+      let nestedSpecs = inputRules.pop() as InputSpecs;
       this.children = new Schema(nestedSpecs, `${key}.`);
     }
 
     if (this.type === 'array') {
-      let nestedSpecs = inputChecks.pop() as InputSpecs;
+      let nestedSpecs = inputRules.pop() as InputSpecs;
       this.children = new ArraySchema(nestedSpecs, `${key}`);
     }
 
     let typeRules: RuleSet = rules[this.type];
     let requiredOrOptional: string = 'required';
 
-    for (const str of inputChecks) {
+    for (const str of inputRules) {
       if (typeof str !== 'string')
         throw Error(`Rule provided for key '${key}' is not of type 'string'`);
 
@@ -46,11 +47,11 @@ export default class Spec {
         continue;
       }
 
-      this.checks.push(new SpecCheck(str, typeRules))
+      this.rules.push(new SpecRule(str, typeRules))
     }
 
-    // Add required check as first rule
-    this.checks.unshift(new SpecCheck(requiredOrOptional, typeRules));
+    // Add required rule as first rule
+    this.rules.unshift(new SpecRule(requiredOrOptional, typeRules));
   }
 
   #validateInput = (inputSpec: InputSpec) => {
@@ -81,8 +82,8 @@ export default class Spec {
   }
 }
 
-class SpecCheck {
-  checkFn: Function
+class SpecRule {
+  ruleFn: Function
   getErrorMsg: Function
 
   constructor(ruleName: string, rules: RuleSet) {
@@ -98,11 +99,11 @@ class SpecCheck {
       throw Error(`Invalid rule ${ruleName}`);
 
     if(args.length > 0) {
-      this.checkFn = rules[ruleName].getFunc(...args);
+      this.ruleFn = rules[ruleName].getFunc(...args);
       this.getErrorMsg = rules[ruleName].getErrorMsg(...args);
     }
     else {
-      this.checkFn = rules[ruleName].getFunc();
+      this.ruleFn = rules[ruleName].getFunc();
       this.getErrorMsg = rules[ruleName].getErrorMsg();
     }
   }
