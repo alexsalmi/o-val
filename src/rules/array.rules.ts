@@ -3,15 +3,19 @@ import BaseRules from "rules/base.rules.js"
 
 const ArrayRules: RuleSet = {
   array: new Rule('array',
-    function (arr: Array<any>): boolean {
-      return Array.isArray(arr);
+    function (): Function {
+      return (arr: Array<any>): boolean => {
+        return Array.isArray(arr);
+      }
     },
     `'{key}' must be an array`
   ),
 
   notEmpty: new Rule('notEmpty',
-    function (arr: Array<any>): boolean {
-      return arr.length > 0;
+    function (): Function {
+      return (arr: Array<any>): boolean => {
+        return arr.length > 0;
+      }
     },
     `'{key}' must not be an empty array`
   ),

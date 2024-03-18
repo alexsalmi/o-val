@@ -32,12 +32,8 @@ export default class Rule {
    * @returns {Function} The function which enforces the Rule with arguments injected
    */
   getFunc = (...args: string[]): Function => {
-    // If arguments are given, apply them to the function and return the function which is returned
-    if (args.length > 0)
-      return this.#fn(...args);
-
-    // If no arguments are given, return the function as is
-    return this.#fn;
+    // Apply any provided args to the function and return the function which is returned
+    return this.#fn(...args);
   }
 
   /**

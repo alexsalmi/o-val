@@ -3,8 +3,10 @@ import BaseRules from "rules/base.rules.js";
 
 const NumberRules: RuleSet = {
   number: new Rule('number',
-    function (value: number): boolean {
-      return typeof value === 'number';
+    function (): Function {
+      return (value: number): boolean => {
+        return typeof value === 'number';
+      }
     },
     `'{key}' must be of type 'number'`
   ),
@@ -38,15 +40,19 @@ const NumberRules: RuleSet = {
   ),
 
   isInt: new Rule('isInt',
-    function (value: number): boolean {
-      return Number.isInteger(value);
+    function (): Function {
+      return (value: number): boolean => {
+        return Number.isInteger(value);
+      }
     },
     `'{key}' must be an integer`
   ),
 
   isDecimal: new Rule('isDecimal',
-    function (value: number): boolean {
-      return value.toString().includes('.');
+    function (): Function {
+      return (value: number): boolean => {
+        return value.toString().includes('.');
+      }
     },
     `'{key}' must be a decimal`
   ) 

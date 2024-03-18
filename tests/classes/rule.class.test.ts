@@ -6,8 +6,10 @@ let ruleWithoutParams: Rule;
 describe('Rule Class Tests', () => {
 	test('Construct a rule which does not accept params', () => {
 		ruleWithoutParams = new Rule('ruleWithoutParams', 
-			function (value: any) {
-				return value === 'Valid Value';
+			function () {
+				return (value: any) => {
+					return value === 'Valid Value';
+				}
 			},
 			`{rule} failed: Key {key}'s value {value} does not equal Valid Value`
 		);

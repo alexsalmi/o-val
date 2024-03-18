@@ -3,15 +3,19 @@ import BaseRules from "rules/base.rules.js";
 
 const StringRules: RuleSet = {
   string: new Rule('string',
-    function (value: string): boolean {
-      return typeof value === 'string';
+    function (): Function {
+      return (value: string): boolean => {
+        return typeof value === 'string';
+      }
     },
     `'{key}' must be of type 'string'`
   ),
 
   isEmpty: new Rule('isEmpty',
-    function (value: string): boolean {
-      return value.length === 0;
+    function (): Function {
+      return (value: string): boolean => {
+        return value.length === 0;
+      }
     },
     `'{key}' must be an empty string`
   ),
@@ -44,36 +48,46 @@ const StringRules: RuleSet = {
   ),
 
   isNumeric: new Rule('isNumeric',
-    function (value: string): boolean {
-      return !Number.isNaN(Number(value));
+    function (): Function {
+      return (value: string): boolean => {
+        return !Number.isNaN(Number(value));
+      }
     },
     `'{key}' must be numeric`
   ),
 
   isAlphaNumeric: new Rule('isAlphaNumeric',
-    function (value: string): boolean {
-      return (value.match("^([A-Za-z0-9]*)$") || []).length > 0;
+    function (): Function {
+      return (value: string): boolean => {
+        return (value.match("^([A-Za-z0-9]*)$") || []).length > 0;
+      }
     },
     `'{key}' must be alphanumeric`
   ),
 
   isAlpha: new Rule('isAlpha',
-    function (value: string): boolean {
-      return (value.match("^([A-Za-z]*)$") || []).length > 0;
+    function (): Function {
+      return (value: string): boolean => {
+        return (value.match("^([A-Za-z]*)$") || []).length > 0;
+      }
     },
     `'{key}' must only contain alphabetical characters`
   ),
   
   isUpperCase: new Rule('isUpperCase',
-    function (value: string): boolean {
-      return (value.match("^([A-Z]*)$") || []).length > 0;
+    function (): Function {
+      return (value: string): boolean => {
+        return (value.match("^([A-Z]*)$") || []).length > 0;
+      }
     },
     `'{key}' must only contain uppercase characters`
   ),
   
   isLowerCase: new Rule('isLowerCase',
-    function (value: string): boolean {
-      return (value.match("^([a-z]*)$") || []).length > 0;
+    function (): Function {
+      return (value: string): boolean => {
+        return (value.match("^([a-z]*)$") || []).length > 0;
+      }
     },
     `'{key}' must only contain lowercase characters`
   )

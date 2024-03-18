@@ -5,15 +5,19 @@ const BaseRules: RuleSet = {
   //   return !value;
   // },
   required: new Rule('required',
-    function (value: any): boolean {
-      return value !== undefined && value !== null;
+    function (): Function {
+      return (value: any): boolean => {
+        return value !== undefined && value !== null;
+      }
     },
     `'{key}' is required`
   ),
 
   optional: new Rule('optional',
-    function (value: any): boolean {
-      return value !== undefined && value !== null;
+    function (): Function {
+      return (value: any): boolean => {
+        return value !== undefined && value !== null;
+      }
     },
     ''
   ),
