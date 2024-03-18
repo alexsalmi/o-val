@@ -3,7 +3,7 @@ import Schema, { ArraySchema } from "classes/schema.class.js";
 let schema: Schema;
 let arraySchema: ArraySchema
 
-jest.mock('../../src/classes/spec.class.js', () => {
+jest.mock('classes/spec.class.js', () => {
 	return jest.fn().mockImplementation(() => {
 		return {}
 	})
