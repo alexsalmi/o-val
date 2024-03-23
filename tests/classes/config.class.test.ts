@@ -1,7 +1,7 @@
-import OValConfig from "classes/config.class.js";
+import _config from "classes/config.class.js";
 import rules from "rules/index.js";
 
-const config = new OValConfig();
+const config = new _config();
 
 describe('Config class tests', () => {
   test('Type added with default proto successfully', () => {

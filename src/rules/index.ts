@@ -10,6 +10,6 @@ const rules: RuleSetCollection = {
   array: ArrayRules
 }
 
-export const types: string[] = Object.keys(rules);
+export const types: string[] = (() => Object.keys(rules))();
 
 export default rules;

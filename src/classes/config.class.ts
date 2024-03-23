@@ -3,7 +3,7 @@ import rules from "rules/index.js";
 import Rule from "classes/rule.class.js";
 
 /** Config class add types and rules as needed */
-export default class OValConfig {
+export default class config {
   /** Adds a new type, with the option to have the new type inherit the rules of an existing type */
   addType = (name: string, proto?: string) => {
     if (rules[name])
