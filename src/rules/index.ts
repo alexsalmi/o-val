@@ -20,6 +20,8 @@ const rules: RuleSetCollection = {
   url: UrlRules
 }
 
-export const types: string[] = (() => Object.keys(rules))();
+export const getTypes = (): string[] => {
+  return Object.keys(rules);
+}
 
 export default rules;

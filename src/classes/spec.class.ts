@@ -1,4 +1,4 @@
-import rules, { types } from "rules/index.js";
+import rules, { getTypes } from "rules/index.js";
 import Schema, { ArraySchema } from "classes/schema.class.js";
 
 /** Spec class to specify rules for a specific key in a Schema*/
@@ -86,7 +86,7 @@ export default class Spec {
         throw Error(`Invalid type specification for key '${this.#key}'`);
 
       // Ensure the provided type is a valid type
-      if (!types.includes(inputSpec[0]))
+      if (!getTypes().includes(inputSpec[0]))
         throw Error(`Type '${inputSpec[0]}' does not exist for key '${this.#key}'`);
 
       // If the type is object or array, an Object needs to be provided as the last element for the nested Specs
@@ -97,7 +97,7 @@ export default class Spec {
     // Input validations if input is string
     if (typeof inputSpec === 'string') {
       // Ensure the provided type is a valid type
-      if (!types.includes(inputSpec))
+      if (!getTypes().includes(inputSpec))
         throw Error(`Type '${inputSpec}' does not exist for key '${this.#key}'`);
 
       // If the type is object or array, the input must be provided as an array

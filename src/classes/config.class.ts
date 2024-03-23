@@ -5,7 +5,7 @@ import Rule from "classes/rule.class.js";
 /** Config class add types and rules as needed */
 export default class config {
   /** Adds a new type, with the option to have the new type inherit the rules of an existing type */
-  addType = (name: string, proto?: string) => {
+  addType = (name: string, fn: Function, proto?: string) => {
     if (rules[name])
       throw Error(`Type '${name}' already exists`);
 
@@ -14,6 +14,7 @@ export default class config {
 
     rules[name] = {};
     rules[name].__proto__ = proto ? rules[proto] : BaseRules;
+    rules[name][name] = new Rule(name, () => {return fn}, `'{key}' must be of type '${name}'`);
   }
 
   /** Adds a new rule to an existing type */
