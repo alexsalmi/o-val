@@ -2,6 +2,7 @@ import Rule from "classes/rule.class.js";
 import BaseRules from "rules/base.rules.js";
 
 const StringRules: RuleSet = {
+  // Checks that the value passed is a string
   string: new Rule('string',
     function (): Function {
       return (value: string): boolean => {
@@ -11,6 +12,7 @@ const StringRules: RuleSet = {
     `'{key}' must be of type 'string'`
   ),
 
+  // Checks to see if the string is empty
   isEmpty: new Rule('isEmpty',
     function (): Function {
       return (value: string): boolean => {
@@ -20,6 +22,7 @@ const StringRules: RuleSet = {
     `'{key}' must be an empty string`
   ),
 
+  // Checks to see if the string is at least as long as a set value
   minLength: new Rule('minLength',
     function (limit: number): Function {
       return (value: string): boolean => {
@@ -29,6 +32,7 @@ const StringRules: RuleSet = {
     `'{key}' must be at least {arg0} characters long`
   ),
 
+  // Checks to see if the string is at most as long as a set value
   maxLength: new Rule('maxLength',
     function (limit: number): Function {
       return (value: string): boolean => {
@@ -38,6 +42,7 @@ const StringRules: RuleSet = {
     `'{key}' must be at most {arg0} characters long`
   ),
 
+  // Checks to see if the string matches a set regex pattern
   matches: new Rule('matches',
     function (regex: string): Function {
       return (value: string): boolean => {
@@ -47,6 +52,7 @@ const StringRules: RuleSet = {
     `'{key}' must match the format {arg0}`
   ),
 
+  // Checks to see if the string contains only numeric characters
   isNumeric: new Rule('isNumeric',
     function (): Function {
       return (value: string): boolean => {
@@ -56,6 +62,7 @@ const StringRules: RuleSet = {
     `'{key}' must be numeric`
   ),
 
+  // Checks to see if the string contains only alphanumeric characters
   isAlphaNumeric: new Rule('isAlphaNumeric',
     function (): Function {
       return (value: string): boolean => {
@@ -65,6 +72,7 @@ const StringRules: RuleSet = {
     `'{key}' must be alphanumeric`
   ),
 
+  // Checks to see if the string contains only alphabetical characters
   isAlpha: new Rule('isAlpha',
     function (): Function {
       return (value: string): boolean => {
@@ -74,6 +82,7 @@ const StringRules: RuleSet = {
     `'{key}' must only contain alphabetical characters`
   ),
   
+  // Checks to see if the string contains only uppercase characters
   isUpperCase: new Rule('isUpperCase',
     function (): Function {
       return (value: string): boolean => {
@@ -83,6 +92,7 @@ const StringRules: RuleSet = {
     `'{key}' must only contain uppercase characters`
   ),
   
+  // Checks to see if the string contains only lowercase characters
   isLowerCase: new Rule('isLowerCase',
     function (): Function {
       return (value: string): boolean => {

@@ -1,5 +1,7 @@
 import Validator from "classes/validator.class.js";
-import StringRules from "rules/string.rules.js";
+import rules from "rules/index.js";
+
+const StringRules = rules['string'];
 
 const VALID_RESPONSE = {
   valid: true,
