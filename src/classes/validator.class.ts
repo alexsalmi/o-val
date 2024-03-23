@@ -1,41 +1,25 @@
 import Schema from "classes/schema.class.js";
 import Spec from "classes/spec.class.js";
 
-/** @class Validator class used to validate objects against specifications */
+/** Validator class used to validate objects against specifications */
 class Validator {
-  /** @type {Schema} The defined Schema that the object should be validated against */
+  /** The defined Schema that the object should be validated against */
   #schema: Schema;
 
-  /** @type {boolean} Sets whether the Validate should operate in strict mode */
+  /** Sets whether the Validate should operate in strict mode */
   strict: boolean = false;
 
-  /**
-   * @contrast
-   * 
-   * @param {IntpuSpecs} input The provided specifications which the Schema should adhere to 
-   */
+  
   constructor(input: InputSpecs) {
     this.#schema = new Schema(input);
   }
   
-  /**
-   * Public function which begins the validation process
-   * 
-   * @param {InputObj} obj The object which should be validated against the Schema
-   * @returns {ValidationResponse} Response indicating whether the pbject is valid or not, and any errors
-   */
+  /** Public function which begins the validation process */
   validate = (obj: InputObj): ValidationResponse => {
     return this.#validateObject(obj, this.#schema.specs);
   }
 
-  /**
-   * Validates an object against the Specifications
-   * 
-   * @param {InputObj} obj The object to be validated
-   * @param {SpecObj} specs The specifications which the object should adhere to
-   * @param {string} path (optional) The path to get to this object, if it is nested
-   * @returns {ValidationResponse} Response indicating whether the object is valid or not, and any errors
-   */
+  /** Validates an object against the Specifications */
   #validateObject = (obj: InputObj, specs: SpecObj, path: string = ''): ValidationResponse => {
     let valid: boolean = true;
     let errors: ValidationErrors = {};
@@ -118,14 +102,7 @@ class Validator {
     };
   }
 
-  /**
-   * Validates an array against the Specifications
-   * 
-   * @param {InputArr} arr The array to be validated
-   * @param {SpecObj} specs The specifications which the object should adhere to
-   * @param {string} path The path to get to this object, if it is nested
-   * @returns {ValidationResponse} Response indicating whether the array is valid or not, and any errors
-   */
+  /** Validates an array against the Specifications */
   #validateArray = (arr: InputArr, specs: SpecObj, path: string = ''): ValidationResponse => {
     let valid: boolean = true;
     let errors: ValidationErrors = {};

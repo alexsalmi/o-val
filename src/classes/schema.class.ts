@@ -1,26 +1,16 @@
 import Spec from "classes/spec.class.js";
 
-/** @class Schema class to define the object schema that needs to be followed for a Validator instance */
+/** Schema class to define the object schema that needs to be followed for a Validator instance */
 export default class Schema {
-  /** @type {SpecObj} The object containing the expected keys and the rules each key's value needs to adhere to */
+  /** The object containing the expected keys and the rules each key's value needs to adhere to */
   specs: SpecObj = {};
 
-  /**
-   * @constructor
-   * 
-   * @param {InputSpecs} input An object of keys and a list of strings defining which rules need to be adhered to
-   * @param {string} path (optional) - If this Schema is for a nested object, this is the overall path leading to this object
-   */
+  
   constructor(input: InputSpecs, path: string = '') {
     this.addSpecs(input, path);
   }
 
-  /**
-   * Adds a new set of Specs to the Schema's SpecObj
-   * 
-   * @param {InputSpecs} input An object of keys and a list of strings defining which rules need to be adhered to
-   * @param {string} path (optional) - If this Schema is for a nested object, this is the overall path leading to this object
-   */
+  /** Adds a new set of Specs to the Schema's SpecObj */
   addSpecs(input: InputSpecs, path: string = '') {
     for (const key of Object.keys(input)) {
       // If the key already exists in our existing specs, throw an error
@@ -34,30 +24,17 @@ export default class Schema {
 }
 
 
-/** 
- * @extends Schema
- * @class ArraySchema class to define the array schema that needs to be followed for a Validator instance
- */
+/** ArraySchema class to define the array schema that needs to be followed for a Validator instance */
 export class ArraySchema{
-  /** @type {SpecObj} The object containing the expected keys and the rules each key's value needs to adhere to */
+  /** The object containing the expected keys and the rules each key's value needs to adhere to */
   specs: SpecObj = {};
 
-  /**
-   * @constructor
-   * 
-   * @param {InputSpecs} input An object of keys and a list of strings defining which rules need to be adhered to
-   * @param {string} path (optional) - If this Schema is for a nested object, this is the overall path leading to this object
-   */
+
   constructor(input: InputSpecs, path: string) {
     this.addSpecs(input, path);
   }
 
-  /**
-   * Adds a new set of Specs to the Schema's SpecObj
-   * 
-   * @param {InputSpecs} input An object of keys and a list of strings defining which rules need to be adhered to
-   * @param {string} path (optional) - If this Schema is for a nested object, this is the overall path leading to this object
-   */
+  /** Adds a new set of Specs to the Schema's SpecObj */
   addSpecs(input: InputSpecs, path: string) {
     for (const key of Object.keys(input)) {
       // If the key already exists in our existing specs, throw an error
@@ -70,13 +47,7 @@ export class ArraySchema{
     }
   }
 
-  /**
-   * Gets the range of indices in the array this spec will apply to
-   * 
-   * @param {string} key The key for the spec, provided by the user
-   * @param {string} path (optional) - If this Schema is for a nested object, this is the overall path leading to this object
-   * @returns 
-   */
+  /** Gets the range of indices in the array this spec will apply to */
   #getSpecRange = (key: string, path: string): SpecRange => {
     // Convert the key to an array of numbers, if possible. Elements that cannot be converted to integers will remain as strings
     let rangeArr: (number | string)[] = key.replace('[', '').replace(']', '').split(',');

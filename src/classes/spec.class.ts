@@ -1,31 +1,24 @@
 import rules, { types } from "rules/index.js";
 import Schema, { ArraySchema } from "classes/schema.class.js";
 
-/** @class Spec class to specify rules for a specific key in a Schema*/
+/** Spec class to specify rules for a specific key in a Schema*/
 export default class Spec {
-  /** @type {string} The key in the Schema that this spec corresponds to */
+  /** The key in the Schema that this spec corresponds to */
   #key: string
 
-  /** @type {string} The type of the value stored at this key */
+  /** The type of the value stored at this key */
   type: string
 
-  /** @type {SpecRule[]} A list of Rules that the value at this key needs to adhere to */
+  /** A list of Rules that the value at this key needs to adhere to */
   rules: SpecRule[] = [];
 
-  /** @type {Schema} (optional) If this spec is for an object or array field, this value will store the children's Schema */
+  /** If this spec is for an object or array field, this value will store the children's Schema */
   children?: Schema
 
-  /** @type {SpecRange} (optional) If this spec is part of an array field, this value will store the range of values this spec should apply to */
+  /** If this spec is part of an array field, this value will store the range of values this spec should apply to */
   range?: SpecRange
   
 
-  /**
-   * @constructor
-   * 
-   * @param {string} key 
-   * @param inputSpec 
-   * @param range 
-   */
   constructor(key: string, inputSpec: InputSpec, range?: SpecRange) { 
     this.#key = key;
     this.range = range;
@@ -76,11 +69,7 @@ export default class Spec {
     this.rules.unshift(new SpecRule(requiredOrOptional, typeRules));
   }
 
-  /**
-   * Validates the format of the InputSpec before beginning to convert to Specs
-   * 
-   * @param {InputSpec} inputSpec Specifications provided by user
-   */
+  /** Validates the format of the InputSpec before beginning to convert to Specs */
   #validateInput = (inputSpec: InputSpec) => {
     // Input needs to be provided as an array or a single string
     if (!Array.isArray(inputSpec) && typeof inputSpec !== 'string')
@@ -118,21 +107,15 @@ export default class Spec {
   }
 }
 
-/** @class SpecRule class for defining a specific rule within a Spec */
+/** SpecRule class for defining a specific rule within a Spec */
 class SpecRule {
-  /** @type {Function} The function that needs to be applied to a value to determine if the value passes this rule */
+  /**The function that needs to be applied to a value to determine if the value passes this rule */
   ruleFn: Function
 
-  /** @type {Function} The function that needs to be applied to a key/value pair to get the corresponding error message */
+  /** The function that needs to be applied to a key/value pair to get the corresponding error message */
   getErrorMsg: Function
 
 
-  /**
-   * @constructor
-   * 
-   * @param {string} ruleName The name of the rule that needs to be enforced
-   * @param {string} rules The RuleSet where we are getting the rule and error functions from
-   */
   constructor(ruleName: string, rules: RuleSet) {
     let args: string[] = [];
 

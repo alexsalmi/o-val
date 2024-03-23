@@ -1,47 +1,29 @@
 
-/**
- * @class Rule class to keep track of the different rules that can be added to each field in the Schema
- */
+/** Rule class to keep track of the different rules that can be added to each field in the Schema*/
 export default class Rule {
-  /** @private  @type {string} The name of the Rule */
+  /** The name of the Rule */
   #name: string
   
-  /** @private @type {Function} The function which enforces the Rule */
+  /** The function which enforces the Rule */
   #fn: Function
   
-  /** @private @type {string} The format of the error message that is returned if the rule fails */
+  /** The format of the error message that is returned if the rule fails */
   #errorMsg: string
 
-  /** 
-   * @constructor 
-   * 
-   * @param {string} name The name of the Rule
-   * @param {Function} fn The function which enforces the Rule
-   * @param {string} errorMsg The format of the error message that is returned if the rule fails
-   * */
+  
   constructor(name: string, fn: Function, errorMsg: string) {
     this.#name = name;
     this.#fn = fn;
     this.#errorMsg = errorMsg;
   }
 
-  /**
-   * Gets the function which enforces the Rule, injecting any arguments passed
-   * 
-   * @param {string[]} args (optional) - The arguments required for the rule to run
-   * @returns {Function} The function which enforces the Rule with arguments injected
-   */
+  /** Gets the function which enforces the Rule, injecting any arguments passed */
   getFunc = (...args: string[]): Function => {
     // Apply any provided args to the function and return the function which is returned
     return this.#fn(...args);
   }
 
-  /**
-   * Gets the function which creates the error message, injecting any arguments passed
-   * 
-   * @param {any[]} args (optional) - The arguments required for the rule to run which appear in the error message
-   * @returns {Function} The function which creates the error message with a specific key and value
-   */
+  /** Gets the function which creates the error message, injecting any arguments passed */
   getErrorMsg = (...args: any[]): Function => {
     // Inject the rule name, list of arguments, and individual arguments into the error message
     let err = this.#errorMsg;
