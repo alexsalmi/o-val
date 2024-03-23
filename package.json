@@ -1,10 +1,10 @@
 {
   "name": "o-val",
   "version": "1.0.0",
-  "description": "An object validation, to check whether an object meets your set requirements",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "description": "An object validation library for Javascript or Typescript",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "require": "./dist/index.cjs",
@@ -13,7 +13,7 @@
     }
   },
   "files": [
-    "dist"
+    "dist/**"
   ],
   "type": "module",
   "scripts": {
