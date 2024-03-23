@@ -2,6 +2,12 @@
   "name": "o-val",
   "version": "1.0.0",
   "description": "An object validation library for Javascript or Typescript",
+  "author": {
+    "name":  "Alex Salmi",
+    "email": "alexjfsalmi@gmail.com"
+  },
+  "repository": "alexsalmi/o-val",
+  "license": "ISC",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -22,14 +28,15 @@
     "build": "tsup"
   },
   "keywords": [
-    "object",
     "validation",
-    "input",
-    "form",
-    "rules"
+    "validator",
+    "object validation",
+    "object validator",
+    "input validation",
+    "input validator",
+    "form validation",
+    "form validator"
   ],
-  "author": "Alex Salmi",
-  "license": "ISC",
   "devDependencies": {
     "@types/jest": "^29.5.12",
     "jest": "^29.7.0",
