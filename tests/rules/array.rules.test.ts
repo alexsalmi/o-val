@@ -115,6 +115,16 @@ describe('Array Rule Tests', () => {
 	  });
 	});
 
+	test('minLength: Invalid params', () => {
+	  let fn = () => new Validator({
+			arr: ['array', 'minLength', {
+				'*': 'string'
+			}]
+	  });
+  
+	  expect(fn).toThrow(`Rule 'minLength' requires a number as input`);
+	});
+
 	test('maxLength: Pass', () => {
 	  let validator = new Validator({
 			arr: ['array', 'maxLength=3', {
@@ -151,6 +161,16 @@ describe('Array Rule Tests', () => {
 				arr: [error_message]
 			}
 	  });
+	});
+
+	test('maxLength: Invalid params', () => {
+	  let fn = () => new Validator({
+			arr: ['array', 'maxLength', {
+				'*': 'string'
+			}]
+	  });
+  
+	  expect(fn).toThrow(`Rule 'maxLength' requires a number as input`);
 	});
 
 	test('exactLength: Pass', () => {
@@ -191,5 +211,15 @@ describe('Array Rule Tests', () => {
 				arr2: [error_message2]
 			}
 	  });
+	});
+
+	test('exactLength: Invalid params', () => {
+	  let fn = () => new Validator({
+			arr: ['array', 'exactLength', {
+				'*': 'string'
+			}]
+	  });
+  
+	  expect(fn).toThrow(`Rule 'exactLength' requires a number as input`);
 	});
 });

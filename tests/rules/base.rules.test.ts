@@ -6,7 +6,7 @@ const VALID_RESPONSE = {
   errors: {}
 }
 
-describe('----- Base Rule Tests -----', () => {
+describe('Base Rule Tests', () => {
   test('Required: Pass when valid value is passed', () => {
     let validator = new Validator({
       name: 'string'

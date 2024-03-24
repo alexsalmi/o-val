@@ -8,7 +8,7 @@ const VALID_RESPONSE = {
   errors: {}
 }
 
-describe('----- Number Rule Tests -----', () => {
+describe('Number Rule Tests', () => {
   test('Type Validation: Pass', () => {
     let validator = new Validator({
       age: 'number'
@@ -69,6 +69,14 @@ describe('----- Number Rule Tests -----', () => {
     });
   });
 
+	test('minValue: Invalid params', () => {
+	  let fn = () => new Validator({
+			age: ['number', 'minValue']
+	  });
+  
+	  expect(fn).toThrow(`Rule 'minValue' requires a number as input`);
+	});
+
   test('maxValue: Pass', () => {
     let validator = new Validator({
       age: ['number', 'maxValue=18']
@@ -99,11 +107,19 @@ describe('----- Number Rule Tests -----', () => {
     });
   });
 
-  test('isBetween: Pass', () => {
+	test('maxValue: Invalid params', () => {
+	  let fn = () => new Validator({
+			age: ['number', 'maxValue']
+	  });
+  
+	  expect(fn).toThrow(`Rule 'maxValue' requires a number as input`);
+	});
+
+  test('between: Pass', () => {
     let validator = new Validator({
-      age1: ['number', 'isBetween=0,10'],
-      age2: ['number', 'isBetween=0,10'],
-      age3: ['number', 'isBetween=0,10']
+      age1: ['number', 'between=0,10'],
+      age2: ['number', 'between=0,10'],
+      age3: ['number', 'between=0,10']
     });
 
     let res = validator.validate({
@@ -115,18 +131,18 @@ describe('----- Number Rule Tests -----', () => {
     expect(res).toEqual(VALID_RESPONSE);
   });
 
-  test('isBetween: Fail', () => {
+  test('between: Fail', () => {
     let validator = new Validator({
-      age1: ['number', 'isBetween=0,10'],
-      age2: ['number', 'isBetween=0,10']
+      age1: ['number', 'between=0,10'],
+      age2: ['number', 'between=0,10']
     });
 
     let res = validator.validate({
       age1: -1,
       age2: 11
     });
-    let age1_error_message = NumberRules['isBetween'].getErrorMsg(0,10)('age1', -1);
-    let age2_error_message = NumberRules['isBetween'].getErrorMsg(0,10)('age2', 10);
+    let age1_error_message = NumberRules['between'].getErrorMsg(0,10)('age1', -1);
+    let age2_error_message = NumberRules['between'].getErrorMsg(0,10)('age2', 10);
 
     expect(res).toEqual({
       valid: false,
@@ -136,6 +152,18 @@ describe('----- Number Rule Tests -----', () => {
       }
     });
   });
+
+	test('between: Invalid params', () => {
+	  let fn1 = () => new Validator({
+			age: ['number', 'between']
+	  });
+	  let fn2 = () => new Validator({
+			age: ['number', 'between=1']
+	  });
+  
+	  expect(fn1).toThrow(`Rule 'between' requires two numbers as input`);
+	  expect(fn2).toThrow(`Rule 'between' requires two numbers as input`);
+	});
 
   test('isInt: Pass', () => {
     let validator = new Validator({

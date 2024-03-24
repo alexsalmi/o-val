@@ -21,6 +21,9 @@ const UrlRules: RuleSet = {
 	// Checks if the URL has a set domain
 	hasDomain: new Rule('hasDomain',
 		function (domain: string): Function {
+      if(!domain)
+        throw Error(`Rule 'hasDomain' requires a domain as input`);
+
 			return (value: string): boolean => {
 				return value.toLowerCase().includes(domain.toLowerCase());
 			}

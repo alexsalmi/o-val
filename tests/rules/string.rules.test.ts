@@ -8,7 +8,7 @@ const VALID_RESPONSE = {
   errors: {}
 }
 
-describe('----- String Rule Tests -----', () => {
+describe('String Rule Tests', () => {
   test('Type Validation: Pass', () => {
     let validator = new Validator({
       name: 'string'
@@ -99,6 +99,14 @@ describe('----- String Rule Tests -----', () => {
     });
   });
 
+	test('minLength: Invalid params', () => {
+	  let fn = () => new Validator({
+			name: ['string', 'minLength']
+	  });
+  
+	  expect(fn).toThrow(`Rule 'minLength' requires a number as input`);
+	});
+
   test('maxLength: Pass', () => {
     let validator = new Validator({
       name: ['string', 'maxLength=6']
@@ -129,6 +137,14 @@ describe('----- String Rule Tests -----', () => {
     });
   });
 
+	test('maxLength: Invalid params', () => {
+	  let fn = () => new Validator({
+			name: ['string', 'maxLength']
+	  });
+  
+	  expect(fn).toThrow(`Rule 'maxLength' requires a number as input`);
+	});
+
   test('matches: Pass', () => {
     let validator = new Validator({
       name: ['string', 'matches=[0-9]+']
@@ -158,6 +174,14 @@ describe('----- String Rule Tests -----', () => {
       }
     });
   });
+
+	test('matches: Invalid params', () => {
+	  let fn = () => new Validator({
+			name: ['string', 'matches']
+	  });
+  
+	  expect(fn).toThrow(`Rule 'matches' requires a regex string as input`);
+	});
 
   test('isNumeric: Pass', () => {
     let validator = new Validator({

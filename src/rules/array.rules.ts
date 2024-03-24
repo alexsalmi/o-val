@@ -25,6 +25,9 @@ const ArrayRules: RuleSet = {
   // Checks that the array has a minimum value of 'limit'
   minLength: new Rule('minLength',
     function (limit: number): Function {
+      if(!limit && limit !== 0)
+        throw Error(`Rule 'minLength' requires a number as input`);
+
       return (arr: Array<any>): boolean => {
         return arr.length >= limit;
       }
@@ -35,6 +38,9 @@ const ArrayRules: RuleSet = {
   // Checks that the array has a maximum value of 'limit'
   maxLength: new Rule('maxLength',
     function (limit: number): Function {
+      if(!limit && limit !== 0)
+        throw Error(`Rule 'maxLength' requires a number as input`);
+      
       return (arr: Array<any>): boolean => {
         return arr.length <= limit;
       }
@@ -45,6 +51,9 @@ const ArrayRules: RuleSet = {
   // Checks that the array has an exact length of 'length'
   exactLength: new Rule('exactLength',
     function (length: number): Function {
+      if(!length && length !== 0)
+        throw Error(`Rule 'exactLength' requires a number as input`);
+      
       return (arr: Array<any>): boolean => {
         return arr.length == length;
       }

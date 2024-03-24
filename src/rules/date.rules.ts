@@ -16,6 +16,9 @@ const DateRules: RuleSet = {
 	// Checks if the date is before a set date
 	before: new Rule('before',
 		function (date: string): Function {
+      if(!date)
+        throw Error(`Rule 'before' requires a date as input`);
+
 			const setDate = new Date(date);
 			return (value: string): boolean => {
 				const inputDate = new Date(value);
@@ -28,6 +31,9 @@ const DateRules: RuleSet = {
 	// Checks if the date is after a set date
 	after: new Rule('after',
 		function (date: string): Function {
+      if(!date)
+        throw Error(`Rule 'after' requires a date as input`);
+
 			const setDate = new Date(date);
 			return (value: string): boolean => {
 				const inputDate = new Date(value);
@@ -40,6 +46,9 @@ const DateRules: RuleSet = {
 	// Checks if the date is between two set dates
 	between: new Rule('between',
 		function (date1: string, date2: string): Function {
+      if(!date1 || !date2)
+        throw Error(`Rule 'between' requires two dates as input`);
+
 			const setDate1 = new Date(date1);
 			const setDate2 = new Date(date2);
 
@@ -54,6 +63,9 @@ const DateRules: RuleSet = {
 	// Checks if the date is on a set date
 	exactDate: new Rule('exactDate',
 		function (date: string): Function {
+      if(!date)
+        throw Error(`Rule 'exactDate' requires a date as input`);
+
 			const setDate = new Date(date);
 
 			return (value: string): boolean => {
@@ -67,6 +79,9 @@ const DateRules: RuleSet = {
 	// Checks if the date is in a set year
 	inYear: new Rule('inYear',
 		function (year: number): Function {
+      if(!year)
+        throw Error(`Rule 'inYear' requires a year as input`);
+
 			return (value: string): boolean => {
 				const inputDate = new Date(value);
 				return inputDate.getFullYear() === Number(year);
@@ -78,6 +93,9 @@ const DateRules: RuleSet = {
 	// Checks if the date is in a set month
 	inMonth: new Rule('inMonth',
 		function (month: number): Function {
+      if(!month)
+        throw Error(`Rule 'inMonth' requires a month as input`);
+
 			return (value: string): boolean => {
 				const inputDate = new Date(value);
 				return (inputDate.getMonth()+1) === Number(month);

@@ -15,6 +15,9 @@ const EmailRules: RuleSet = {
 	// Checks if the email address has a set domain
 	hasDomain: new Rule('hasDomain',
 		function (domain: string): Function {
+      if(!domain)
+        throw Error(`Rule 'hasDomain' requires a domain as input`);
+
 			return (value: string): boolean => {
 				let emailDomain = value.split("@")[1];
 

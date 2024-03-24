@@ -91,4 +91,11 @@ describe('URL Rule Tests', () => {
 	  });
 	});
 
+	test('hasDomain: Invalid params', () => {
+	  let fn = () => new Validator({
+			url: ['url', 'hasDomain']
+	  });
+  
+	  expect(fn).toThrow(`Rule 'hasDomain' requires a domain as input`);
+	});
 });

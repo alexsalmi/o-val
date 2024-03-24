@@ -15,6 +15,9 @@ const NumberRules: RuleSet = {
   // Checks that the value is at least a set number
   minValue: new Rule('minValue',
     function (limit: number): Function {
+      if(!limit)
+        throw Error(`Rule 'minValue' requires a number as input`);
+
       return function (value: number): boolean {
         return value >= limit;
       }
@@ -25,6 +28,9 @@ const NumberRules: RuleSet = {
   // Checks that the value is at most a set number
   maxValue: new Rule('maxValue',
     function (limit: number): Function {
+      if(!limit)
+        throw Error(`Rule 'maxValue' requires a number as input`);
+
       return function (value: number): boolean {
         return value <= limit;
       }
@@ -33,9 +39,11 @@ const NumberRules: RuleSet = {
   ),
 
   // Checks that the value is between two set numbers
-  isBetween: new Rule('isBetween',
-    function (...args: number[]): Function {
-      let [lowerLimit, upperLimit] = args;
+  between: new Rule('between',
+    function (lowerLimit: number, upperLimit: number): Function {
+      if(!lowerLimit || !upperLimit)
+        throw Error(`Rule 'between' requires two numbers as input`);
+
       return function (value: number): boolean {
         return value >= lowerLimit && value <= upperLimit;
       }

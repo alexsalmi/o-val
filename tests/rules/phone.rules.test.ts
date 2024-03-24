@@ -88,4 +88,12 @@ describe('Phone Rule Tests', () => {
 			}
 	  });
 	});
+
+	test('hasCountryCode: Invalid params', () => {
+	  let fn = () => new Validator({
+			phone: ['phone', 'hasCountryCode']
+	  });
+  
+	  expect(fn).toThrow(`Rule 'hasCountryCode' requires a country code as input`);
+	});
 });

@@ -89,6 +89,14 @@ describe('Date Rule Tests', () => {
 	  });
 	});
 
+	test('before: Invalid params', () => {
+	  let fn = () => new Validator({
+			date: ['date', 'before']
+	  });
+  
+	  expect(fn).toThrow(`Rule 'before' requires a date as input`);
+	});
+
 	test('after: Pass', () => {
 	  let validator = new Validator({
 			date: ['date', 'after=06/15/2024'],
@@ -122,6 +130,14 @@ describe('Date Rule Tests', () => {
 				date2: [error_message2]
 			}
 	  });
+	});
+
+	test('after: Invalid params', () => {
+	  let fn = () => new Validator({
+			date: ['date', 'after']
+	  });
+  
+	  expect(fn).toThrow(`Rule 'after' requires a date as input`);
 	});
 
 	test('between: Pass', () => {
@@ -167,6 +183,18 @@ describe('Date Rule Tests', () => {
 	  });
 	});
 
+	test('between: Invalid params', () => {
+	  let fn1 = () => new Validator({
+			date: ['date', 'between']
+	  });
+	  let fn2 = () => new Validator({
+			date: ['date', 'between=1']
+	  });
+  
+	  expect(fn1).toThrow(`Rule 'between' requires two dates as input`);
+	  expect(fn2).toThrow(`Rule 'between' requires two dates as input`);
+	});
+
 	test('exactDate: Pass', () => {
 	  let validator = new Validator({
 			date: ['date', 'exactDate=01/31/2024'],
@@ -200,6 +228,14 @@ describe('Date Rule Tests', () => {
 				date2: [error_message2]
 			}
 	  });
+	});
+
+	test('exactDate: Invalid params', () => {
+	  let fn = () => new Validator({
+			date: ['date', 'exactDate']
+	  });
+  
+	  expect(fn).toThrow(`Rule 'exactDate' requires a date as input`);
 	});
 
 	test('inYear: Pass', () => {
@@ -237,6 +273,14 @@ describe('Date Rule Tests', () => {
 	  });
 	});
 
+	test('inYear: Invalid params', () => {
+	  let fn = () => new Validator({
+			date: ['date', 'inYear']
+	  });
+  
+	  expect(fn).toThrow(`Rule 'inYear' requires a year as input`);
+	});
+
 	test('inMonth: Pass', () => {
 	  let validator = new Validator({
 			date: ['date', 'inMonth=8'],
@@ -272,5 +316,13 @@ describe('Date Rule Tests', () => {
 				date2: [error_message2]
 			}
 	  });
+	});
+
+	test('inMonth: Invalid params', () => {
+	  let fn = () => new Validator({
+			date: ['date', 'inMonth']
+	  });
+  
+	  expect(fn).toThrow(`Rule 'inMonth' requires a month as input`);
 	});
 });

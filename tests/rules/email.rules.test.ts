@@ -83,4 +83,11 @@ describe('Email Rule Tests', () => {
 	  });
 	});
 
+	test('hasDomain: Invalid params', () => {
+	  let fn = () => new Validator({
+			email: ['email', 'hasDomain']
+	  });
+  
+	  expect(fn).toThrow(`Rule 'hasDomain' requires a domain as input`);
+	});
 });

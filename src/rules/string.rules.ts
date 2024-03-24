@@ -25,6 +25,9 @@ const StringRules: RuleSet = {
   // Checks to see if the string is at least as long as a set value
   minLength: new Rule('minLength',
     function (limit: number): Function {
+      if(!limit)
+        throw Error(`Rule 'minLength' requires a number as input`);
+
       return (value: string): boolean => {
         return value.length >= limit;
       }
@@ -35,6 +38,9 @@ const StringRules: RuleSet = {
   // Checks to see if the string is at most as long as a set value
   maxLength: new Rule('maxLength',
     function (limit: number): Function {
+      if(!limit)
+        throw Error(`Rule 'maxLength' requires a number as input`);
+
       return (value: string): boolean => {
         return value.length <= limit;
       }
@@ -45,6 +51,9 @@ const StringRules: RuleSet = {
   // Checks to see if the string matches a set regex pattern
   matches: new Rule('matches',
     function (regex: string): Function {
+      if(!regex)
+        throw Error(`Rule 'matches' requires a regex string as input`);
+
       return (value: string): boolean => {
         return (value.match(`^(${regex})$`) || []).length > 0;
       }

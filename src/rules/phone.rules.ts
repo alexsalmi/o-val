@@ -15,6 +15,9 @@ const PhoneRules: RuleSet = {
 	// Checks if the phone number has a set country code
 	hasCountryCode: new Rule('hasCountryCode',
 		function (country: string): Function {
+      if(!country)
+        throw Error(`Rule 'hasCountryCode' requires a country code as input`);
+
 			const code = "+" + country.replace("+", "");
 			return (value: string): boolean => {
         return value.startsWith(code);
