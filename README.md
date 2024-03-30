@@ -5,7 +5,7 @@
 [![node version][node-image]][node-url]
 
 [npm-image]: https://img.shields.io/npm/v/o-val.svg?style=flat-square
-[npm-url]: https://www.npmjs.com/package/o-val
+[npm-url]: https://www.npmjs.com/package/@asalmi/o-val
 [node-image]: https://img.shields.io/badge/node.js-%3E=_20-green.svg?style=flat-square
 [node-url]: http://nodejs.org/download/
 
@@ -24,7 +24,7 @@ npm i o-val
 - Supports both CommonJS and ECMAScript modules
 
 ## Docs
-### [Object Validation](#object-validation)
+### Object Validation
 - [Validating an object](#validating-an-object)
 - [Adding rules](#adding-rules)
 - [Adding rules with parameters](#adding-rules-with-parameters)
@@ -33,14 +33,14 @@ npm i o-val
 - [Validating nested objects](#validating-nested-objects)
 - [Validating nested arrays](#validating-nested-arrays)
 - [Strict mode validation](#strict-mode-validation)
-### [Custom Types and Rules](#custom-types-and-rules)
+### Custom Types and Rules
 - [Adding custom types](#adding-custom-types)
 - [Adding custom rules](#adding-custom-rules)
 - [Adding custom rules with explicit parameters](#adding-custom-ruless-with-explicit-parameters)
 - [Adding custom rules with any number of parameters](#adding-custom-rules-with-any-number-of-parameters)
 - [Inheriting custom rules](#inheriting-custom-rules)
-### [Types and Rules](#types-and-rules)
-- [Base Type](#base-rules)
+### Types and Rules
+- [Base Type](#base-type)
 - [String](#string)
 - [Number](#number)
 - [Boolean](#boolean)

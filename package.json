@@ -1,5 +1,5 @@
 {
-  "name": "o-val",
+  "name": "@asalmi/o-val",
   "version": "1.0.0",
   "description": "An object validation library for Javascript or Typescript",
   "author": {
