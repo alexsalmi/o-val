@@ -4,7 +4,7 @@
 [![NPM version][npm-image]][npm-url]
 [![node version][node-image]][node-url]
 
-[npm-image]: https://img.shields.io/npm/v/o-val.svg?style=flat-square
+[npm-image]: https://img.shields.io/npm/v/@asalmi/o-val.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/@asalmi/o-val
 [node-image]: https://img.shields.io/badge/node.js-%3E=_20-green.svg?style=flat-square
 [node-url]: http://nodejs.org/download/
@@ -13,7 +13,7 @@ O-Val is a validation library for Javascript and Typescript. Can be used for any
 
 ## Installation
 ```shell
-npm i o-val
+npm i @asalmi/o-val
 ```
 
 ## Features
