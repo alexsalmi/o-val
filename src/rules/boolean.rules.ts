@@ -19,7 +19,7 @@ const BooleanRules: RuleSet = {
 				return bool === true;
 			}
 		},
-		`'{key}' must be a true'`
+		`'{key}' must be 'true'`
 	),
 
 	// Checks that the boolean is false
@@ -29,7 +29,7 @@ const BooleanRules: RuleSet = {
 				return bool === false;
 			}
 		},
-		`'{key}' must be a false'`
+		`'{key}' must be 'false'`
 	)
 }
 

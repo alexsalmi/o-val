@@ -6,7 +6,7 @@ const PhoneRules: RuleSet = {
 	phone: new Rule('phone',
 		function (): Function {
 			return (value: string): boolean => {
-        return (value.match(/^(\+[0-9]+)? ?(\(?[0-9]+\)?)?([-. ]?[0-9])*$/) || []).length > 0;
+        return typeof value === 'string' && (value.match(/^(\+[0-9]+)? ?(\(?[0-9]+\)?)?([-. ]?[0-9])*$/) || []).length > 0;
 			}
 		},
 		`'{key}' must be a valid phone number`

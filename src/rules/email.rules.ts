@@ -6,7 +6,7 @@ const EmailRules: RuleSet = {
 	email: new Rule('email',
 		function (): Function {
 			return (value: string): boolean => {
-        return (value.match('^[a-zA-Z0-9.!#$%&\'*+=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$') || []).length > 0;
+        return typeof value === 'string' && (value.match('^[a-zA-Z0-9.!#$%&\'*+=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$') || []).length > 0;
 			}
 		},
 		`'{key}' must be a valid email address`

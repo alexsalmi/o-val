@@ -7,10 +7,10 @@ const DateRules: RuleSet = {
 		function (): Function {
 			return (value: string): boolean => {
 				let date = new Date(value);
-        return date.toString() !== 'Invalid Date';
+        return typeof value === 'string' && date.toString() !== 'Invalid Date';
 			}
 		},
-		`'{key}' must be a valid date'`
+		`'{key}' must be a valid date`
 	),
 
 	// Checks if the date is before a set date
@@ -25,7 +25,7 @@ const DateRules: RuleSet = {
 				return inputDate < setDate;
 			}
 		},
-		`'{key}' must be a date before {arg0}'`
+		`'{key}' must be a date before {arg0}`
 	),
 
 	// Checks if the date is after a set date
@@ -40,7 +40,7 @@ const DateRules: RuleSet = {
 				return inputDate > setDate;
 			}
 		},
-		`'{key}' must be a date after {arg0}'`
+		`'{key}' must be a date after {arg0}`
 	),
 
 	// Checks if the date is between two set dates
@@ -57,7 +57,7 @@ const DateRules: RuleSet = {
 				return setDate1 < inputDate && inputDate < setDate2;
 			}
 		},
-		`'{key}' must be a date between {arg0} and {arg1}'`
+		`'{key}' must be a date between {arg0} and {arg1}`
 	),
 
 	// Checks if the date is on a set date
@@ -73,7 +73,7 @@ const DateRules: RuleSet = {
 				return setDate.getTime() === inputDate.getTime();
 			}
 		},
-		`'{key}' must be {arg0}'`
+		`'{key}' must be {arg0}`
 	),
 
 	// Checks if the date is in a set year
@@ -87,7 +87,7 @@ const DateRules: RuleSet = {
 				return inputDate.getFullYear() === Number(year);
 			}
 		},
-		`'{key}' must be in the year {arg0}'`
+		`'{key}' must be in the year {arg0}`
 	),
 
 	// Checks if the date is in a set month
@@ -101,7 +101,7 @@ const DateRules: RuleSet = {
 				return (inputDate.getMonth()+1) === Number(month);
 			}
 		},
-		`'{key}' must be in the month {arg0}'`
+		`'{key}' must be in the month {arg0}`
 	)
 }
 
